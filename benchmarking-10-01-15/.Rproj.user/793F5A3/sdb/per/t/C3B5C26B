@@ -1,0 +1,18 @@
+{
+    "contents" : "install.packages(\"ggplot2\")\nlibrary(\"ggplot2\")\n\ninstall.packages(\"gridExtra\")\nlibrary(\"gridExtra\")\n\ninstall.packages(\"gtable\")\nlibrary(\"gtable\")\n\n## CPU Comp on one graph ##\n\n# Load both logs, name columns specifying streaming or non, correct CPU\n\nlog.data.nonstream <- read.table(\"~/benchmarking/nonstreaming/log.out\") \ncolnames(log.data.nonstream) <- c(\"TIMEns\", \"CPUns\",\"RAMns\",\"DISKns\",\"5\",\"6\",\"7\",\"8\")\n\nlog.data.stream <- read.table(\"~/benchmarking/streaming/raw-ouput/10-27-15/log.out\") \ncolnames(log.data.stream) <- c(\"TIMEs\", \"CPUs\",\"RAMs\",\"DISKs\",\"5\",\"6\",\"7\",\"8\")\n\n# Create plots, then have <plot>.x to force both plots to have same \n# x axis and force y axis to start at 0\n\nplot(log.data.nonstream$TIMEns, log.data.nonstream$CPUns,\n                    type = \"l\")\npar(mar=c(4, 4, 4, 2) + 0.3)\nlines(log.data.stream$TIMEs, log.data.stream$CPUs,\n      xlab = \"\", ylab = \"\", col = \"red\",\n      main = \"Streaming vs Nonstreaming CPU Comparison\")\naxis(side = 3, col = \"red\", labels = TRUE, at = axTicks(3))\ntitle(main = \"Streaming vs Nonstreaming CPU Comparison\")\n\n?plot",
+    "created" : 1447814154727.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1649744830",
+    "id" : "C3B5C26B",
+    "lastKnownWriteTime" : 1447817959,
+    "path" : "~/benchmarking/benchmarking-10-01-15/cpu-comp-onegraph.R",
+    "project_path" : "cpu-comp-onegraph.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,18 @@
+{
+    "contents" : "## Comparing CPU streaming vs nonstreaming ##\n\n# Load both logs, name columns specifying streaming or non, correct CPU\n\nlog.data.nonstream <- read.table(\"~/benchmarking/nonstreaming/log.out\") \ncolnames(log.data.nonstream) <- c(\"TIMEns\", \"CPUns\",\"RAMns\",\"DISKns\",\"5\",\"6\",\"7\",\"8\")\n\nlog.data.stream <- read.table(\"~/benchmarking/streaming/raw-ouput/10-27-15/log.out\") \ncolnames(log.data.stream) <- c(\"TIMEs\", \"CPUs\",\"RAMs\",\"DISKs\",\"5\",\"6\",\"7\",\"8\")\n\n# Create plots, then have <plot>.x to force both plots to have same \n# x axis and force y axis to start at 0\n\ncpuplot.stream <- ggplot(data=log.data.stream, aes_string(x=\"TIMEs\", y=\"CPUs\")) + \n  geom_line(color = \"blue\") + xlab(\"\") + ylab(\"Streaming\") +\n  ggtitle(\"Eel Pond (1-3) CPU Load Streaming vs Nonstreaming\") + theme(axis.text.x = \n                                                                         element_blank(), axis.text.y = element_text(size = 16, color = \"black\", \n                                                                                                                     face = \"bold\"), plot.title = element_text(face = \"bold\", size = 13.5))\n\n# Create new plot to fix axis, then another \n# to annotate with text and shading\n\ncpuplot.streamx <-  cpuplot.stream + xlim(0, 650)\n\ncpuplot.streamax <- cpuplot.streamx + annotate(\"text\", x = 60, y = 90, label = \"QC\") +\n  annotate(\"rect\", xmin = 44, xmax = 76, ymin = 0, ymax = 100,\n           fill = \"magenta\", alpha = .2) +\n  annotate(\"text\", x = 260, y = 60, label = \"diginorm\") +\n  annotate(\"rect\", xmin = 200, xmax = 320, ymin = 0, ymax = 100,\n           fill = \"purple\", alpha = .2) +\n  annotate(\"text\", x =  550, y = 30, label = \"assembly\") +\n  annotate(\"rect\", xmin = 320, xmax = 520, ymin = 0, ymax = 100,\n           fill = \"orange\", alpha = .2) + expand_limits(y = 0)\n\ncpuplot.nonstream <- ggplot(data=log.data.nonstream, aes_string(x=\"TIMEns\", y=\"CPUns\")) + \n  geom_line(color = \"blue\") + xlab(\"Time (seconds)\") + ylab(\"Nonstreaming\") +\n  theme(axis.text.y = element_text(size = 16, color = \"black\", face = \"bold\"),\n        axis.text.x = element_text(size = 16, color = \"black\", \n                                   face = \"bold\")) \n\ncpuplot.nonstreamx <- cpuplot.nonstream + xlim(0, 650)\n\ncpuplot.nonstreamax <- cpuplot.nonstreamx + annotate(\"text\", x = 60, y = 90, label = \"QC\") +\n  annotate(\"rect\", xmin = 44, xmax = 76, ymin = 0, ymax = 100,\n           fill = \"magenta\", alpha = .2) +\n  annotate(\"text\", x = 370, y = 60, label = \"diginorm\") +\n  annotate(\"rect\", xmin = 260, xmax = 450, ymin = 0, ymax = 100,\n           fill = \"purple\", alpha = .2) +\n  annotate(\"text\", x =  590, y = 30, label = \"assembly\") +\n  annotate(\"rect\", xmin = 450, xmax = 640, ymin = 0, ymax = 100,\n           fill = \"orange\", alpha = .2) + expand_limits(y = 0)\n\n# grid.arrange to stack graphs, textGrob for common y axis label\n\ngrid.arrange(cpuplot.streamax, cpuplot.nonstreamax,\n             left = textGrob(\"CPU (100%)\", rot = 90, vjust = 1, \n                             gp = gpar(fontface = \"bold\")))\n",
+    "created" : 1447814186229.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "427871462",
+    "id" : "D75DC9F1",
+    "lastKnownWriteTime" : 1447814092,
+    "path" : "~/benchmarking/benchmarking-10-01-15/cpu-comp.R",
+    "project_path" : "cpu-comp.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

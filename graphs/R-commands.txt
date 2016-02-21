@@ -1,0 +1,395 @@
+# 10-01-15 Benchmarking project
+
+# Data from: literate resting eel pond protocol
+# https://github.com/dib-lab/literate-resting/blob/master/kp/eel-pond.rst
+
+# Gathered with sar in README, assimilated with extract.py from sartre
+# https://github.com/ctb/sartre
+
+
+## TO DO ##
+# drop .0 from RAM y axis
+# finish comp graphs
+# clean up y axis on trimer graphs
+# clean up x axis on comp graphs
+# clean up y axis on comp graphs
+# put everything on github
+
+# Install ggplot
+install.packages("ggplot2")
+library("ggplot2")
+
+install.packages("gridExtra")
+library("gridExtra")
+
+## EEL POND WITHOUT STREAMING, ANNOTATED ##
+
+# Load space-separated data, rename columns, view
+
+<<<<<<< HEAD:benchmarking-10-01-15/plots.R
+log.data <- read.table("~/benchmarking/nonstreaming/log.out") 
+colnames(log.data) <- c("TIME", "CPU","RAM","DISK","5","6","7","8")
+#head(log.data)
+=======
+# Load data
+## Space-separated (no header assumed)
+log.data <- read.table("~/benchmarking/nonstreaming/raw-output/10-28-15/log.out") # with header
+>>>>>>> c36eb53e98c82588bea15d57c2a4320dc664f48f:graphs/R-commands.txt
+
+# Divide RAM column to get from bytes to MB, view
+
+log.data$RAM <- log.data$RAM/1e6
+log.data$DISK <- log.data$DISK/1e2
+#head(log.data)
+
+# Plot each graph (cpu, ram, disk) separately,
+# add annotations by redefining with <name>a, 
+# then use grid.arrange to stack <name>a graphs
+
+<<<<<<< HEAD:benchmarking-10-01-15/plots.R
+cpuplot <- ggplot(data=log.data, aes_string(x="TIME", y="CPU")) + 
+  geom_line(color = "blue") + xlab("") + ylab("CPU load (100%)") +
+  ggtitle("Eel Pond (1-3) Without Streaming 10-23-15") + theme(axis.text.x = 
+  element_blank(), axis.text.y = element_text(size = 13.5, color = "black", 
+  face = "bold"), plot.title = element_text(face = "bold", size = 16))
+=======
+# TEMP - getting annotations working - works for color and text
+
+cpuplot <- ggplot(data=log.data, aes_string(x="V1", y="V2")) + 
+  geom_line(color = "blue") + xlab("") + ylab("CPU load (100%)") +
+  ggtitle("Eel Pond Without Streaming") + theme(axis.text.y = element_text(size = 17, 
+  color = "black", face = "bold"), plot.title = element_text(face = "bold", 
+  size = 20))
+
+cpuplot + annotate("rect", xmin = 100, xmax = 300, ymin = 0, ymax = 100,
+                   alpha = .2) + 
+  annotate("text", x = 200, y = 75, label = "text test")
+
+
+# Plot each graph (cpu, ram, disk) separately,
+# add annotations by redefining with <name>a, 
+# then use grid.arrange to stack <name>a graphs
+
+cpuplot <- ggplot(data=log.data, aes_string(x="V1", y="V2")) + 
+  geom_line(color = "blue") + xlab("") + ylab("CPU load (100%)") +
+  ggtitle("Eel Pond (1-2) Without Streaming 10-28-15") + theme(axis.text.x = 
+  element_blank(), axis.text.y = element_text(size = 17, color = "black", 
+  face = "bold"), plot.title = element_text(face = "bold", size = 20))
+>>>>>>> c36eb53e98c82588bea15d57c2a4320dc664f48f:graphs/R-commands.txt
+
+cpuplota <- cpuplot + annotate("text", x = 60, y = 90, label = "QC") +
+  annotate("rect", xmin = 40, xmax = 80, ymin = 0, ymax = 100,
+            fill = "magenta", alpha = .2) +
+  annotate("text", x = 300, y = 60, label = "diginorm") +
+  annotate("rect", xmin = 170, xmax = 450, ymin = 0, ymax = 100,
+           fill = "purple", alpha = .2) +
+  annotate("text", x =  580, y = 30, label = "assembly") +
+  annotate("rect", xmin = 450, xmax = 640, ymin = 0, ymax = 100,
+<<<<<<< HEAD:benchmarking-10-01-15/plots.R
+           fill = "orange", alpha = .2) + expand_limits(y = 0)
+
+ramplot <- ggplot(data=log.data, aes_string(x="TIME", y="RAM")) + 
+=======
+           fill = "orange", alpha = .2) 
+
+ramplot <- ggplot(data=log.data, aes_string(x="V1", y="V3")) + 
+>>>>>>> c36eb53e98c82588bea15d57c2a4320dc664f48f:graphs/R-commands.txt
+  geom_line(color = "red") + xlab("") + ylab("RAM (GB)") +
+  theme(axis.text.x = element_blank(), axis.text.y = element_text(
+    size = 13.5, color = "black", face = "bold"))
+
+ramplota <- ramplot  +
+<<<<<<< HEAD:benchmarking-10-01-15/plots.R
+  annotate("rect", xmin = 40, xmax = 80, ymin = 0, ymax = 15,
+           fill = "magenta", alpha = .2) +
+  annotate("rect", xmin = 170, xmax = 450, ymin = 0, ymax = 15,
+           fill = "purple", alpha = .2) +
+  annotate("rect", xmin = 450, xmax = 640, ymin = 0, ymax = 15,
+           fill = "orange", alpha = .2) + expand_limits(y = 0)
+
+diskplot <- ggplot(data=log.data, aes_string(x="TIME", y="DISK")) + 
+=======
+  annotate("rect", xmin = 40, xmax = 80, ymin = 0, ymax = 12500000,
+           fill = "magenta", alpha = .2) +
+  annotate("rect", xmin = 170, xmax = 450, ymin = 0, ymax = 12500000,
+           fill = "purple", alpha = .2) +
+  annotate("rect", xmin = 450, xmax = 640, ymin = 0, ymax = 12500000,
+           fill = "orange", alpha = .2) 
+
+diskplot <- ggplot(data=log.data, aes_string(x="V1", y="V4")) + 
+>>>>>>> c36eb53e98c82588bea15d57c2a4320dc664f48f:graphs/R-commands.txt
+  geom_line(color = "green") + xlab("Time (seconds)") + ylab("Disk (kTPS)") +
+  theme(axis.text.x = element_text(size = 16, color = "black", 
+        face = "bold"), axis.text.y = element_text(size = 13.5, 
+        color = "black", face = "bold"))
+
+diskplota <- diskplot + 
+<<<<<<< HEAD:benchmarking-10-01-15/plots.R
+  annotate("rect", xmin = 40, xmax = 80, ymin = 0, ymax = 20,
+           fill = "magenta", alpha = .2) +
+  annotate("rect", xmin = 170, xmax = 450, ymin = 0, ymax = 20,
+           fill = "purple", alpha = .2) +
+  annotate("rect", xmin = 450, xmax = 640, ymin = 0, ymax = 20,
+           fill = "orange", alpha = .2) + expand_limits(y = 0)
+
+#grid.arrange(cpuplot,ramplot,diskplot)
+=======
+  annotate("rect", xmin = 40, xmax = 80, ymin = 0, ymax = 1500,
+           fill = "magenta", alpha = .2) +
+  annotate("rect", xmin = 170, xmax = 450, ymin = 0, ymax = 1500,
+           fill = "purple", alpha = .2) +
+  annotate("rect", xmin = 450, xmax = 640, ymin = 0, ymax = 1500,
+           fill = "orange", alpha = .2) 
+
+grid.arrange(cpuplot,ramplot,diskplot)
+>>>>>>> c36eb53e98c82588bea15d57c2a4320dc664f48f:graphs/R-commands.txt
+grid.arrange(cpuplota,ramplota,diskplota)
+
+
+
+## EEL POND WITH STREAMING, ANNOTATED
+
+# Load data
+## Space-separated (no header assumed)
+<<<<<<< HEAD:benchmarking-10-01-15/plots.R
+=======
+
+log.data <- read.table("~/benchmarking/streaming/raw-ouput/10-28-15/log.out") # with header
+
+>>>>>>> c36eb53e98c82588bea15d57c2a4320dc664f48f:graphs/R-commands.txt
+
+log.data <- read.table("~/benchmarking/streaming/raw-ouput/10-27-15/log.out") # with header
+colnames(log.data) <- c("TIME", "CPU","RAM","DISK","5","6","7","8")
+
+# Divide RAM column by 1e6 to get from bytes to MB, DISK by 1e2
+
+log.data$RAM <- log.data$RAM/1e6
+log.data$DISK <- log.data$DISK/1e2
+
+# Plot each graph (cpu, ram, disk) separately, 
+# then use grid.arrange to stack
+
+cpuplot <- ggplot(data=log.data, aes_string(x="TIME", y="CPU")) + 
+  geom_line(color = "blue") + xlab("") + ylab("CPU load (100%)") +
+<<<<<<< HEAD:benchmarking-10-01-15/plots.R
+  ggtitle("Eel Pond (1-3) With Streaming 10-27-15 semistreaming khmer branch") + theme(axis.text.x = 
+  element_blank(), axis.text.y = element_text(size = 16, color = "black", 
+  face = "bold"), plot.title = element_text(face = "bold", size = 13.5))
+
+cpuploty <- cpuplot + expand_limits(y = 0)
+
+cpuplotay <- cpuploty + annotate("text", x = 60, y = 90, label = "QC") +
+  annotate("rect", xmin = 40, xmax = 80, ymin = 0, ymax = 100,
+           fill = "magenta", alpha = .2) +
+  annotate("text", x = 250, y = 60, label = "diginorm") +
+  annotate("rect", xmin = 200, xmax = 330, ymin = 0, ymax = 100,
+           fill = "purple", alpha = .2) +
+  annotate("text", x =  450, y = 30, label = "assembly") +
+  annotate("rect", xmin = 330, xmax = 515, ymin = 0, ymax = 100,
+           fill = "orange", alpha = .2) + expand_limits(y = 0)
+
+ramplot <- ggplot(data=log.data, aes_string(x="TIME", y="RAM")) + 
+=======
+  ggtitle("Eel Pond (1-2) With Streaming 10-28-15 semistreaming khmer branch") + theme(axis.text.x = 
+  element_blank(), axis.text.y = element_text(size = 16, color = "black", 
+  face = "bold"), plot.title = element_text(face = "bold", size = 16))
+  
+
+ramplot <- ggplot(data=log.data, aes_string(x="V1", y="V3")) + 
+>>>>>>> c36eb53e98c82588bea15d57c2a4320dc664f48f:graphs/R-commands.txt
+  geom_line(color = "red") + xlab("") + ylab("RAM (GB)") +
+  theme(axis.text.x = element_blank(), axis.text.y = element_text(
+    size = 13.5, color = "black", face = "bold"))
+
+ramploty <- ramplot + expand_limits(y = 0)
+
+ramplotay <- ramploty + 
+  annotate("rect", xmin = 40, xmax = 80, ymin = 0, ymax = 12.5,
+           fill = "magenta", alpha = .2) +
+  annotate("rect", xmin = 200, xmax = 330, ymin = 0, ymax = 12.5,
+           fill = "purple", alpha = .2) +
+  annotate("rect", xmin = 330, xmax = 515, ymin = 0, ymax = 12.5,
+           fill = "orange", alpha = .2) + expand_limits(y = 0)
+
+diskplot <- ggplot(data=log.data, aes_string(x="TIME", y="DISK")) + 
+  geom_line(color = "green") + xlab("Time (seconds)") + ylab("Disk (kTPS)") +
+  theme(axis.text.x = element_text(size = 20, color = "black", 
+    face = "bold"), axis.text.y = element_text(size = 13.5, 
+    color = "black", face = "bold"))
+
+diskploty <- diskplot + expand_limits(y = 0)
+
+diskplotay <- diskploty + 
+  annotate("rect", xmin = 40, xmax = 80, ymin = 0, ymax = 17,
+           fill = "magenta", alpha = .2) +
+  annotate("rect", xmin = 200, xmax = 330, ymin = 0, ymax = 17,
+           fill = "purple", alpha = .2) +
+  annotate("rect", xmin = 330, xmax = 515, ymin = 0, ymax = 17,
+           fill = "orange", alpha = .2) + expand_limits(y = 0)
+
+
+grid.arrange(cpuplotay,ramplotay,diskplotay)
+
+
+
+ ## Comparing CPU streaming vs nonstreaming ##
+
+# Load both logs, name columns specifying streaming or non, correct CPU
+
+log.data.nonstream <- read.table("~/benchmarking/nonstreaming/log.out") 
+colnames(log.data.nonstream) <- c("TIMEns", "CPUns","RAMns","DISKns","5","6","7","8")
+
+log.data.stream <- read.table("~/benchmarking/streaming/raw-ouput/10-27-15/log.out") 
+colnames(log.data.stream) <- c("TIMEs", "CPUs","RAMs","DISKs","5","6","7","8")
+
+# Create plots, then have <plot>.x to force both plots to have same 
+# x axis and force y axis to start at 0
+
+cpuplot.stream <- ggplot(data=log.data.stream, aes_string(x="TIMEs", y="CPUs")) + 
+  geom_line(color = "blue") + xlab("") + ylab("Streaming") +
+  ggtitle("Eel Pond (1-3) CPU Load Streaming vs Nonstreaming") + theme(axis.text.x = 
+  element_blank(), axis.text.y = element_text(size = 16, color = "black", 
+  face = "bold"), plot.title = element_text(face = "bold", size = 13.5))
+
+# Create new plot to fix axis, then another 
+# to annotate with text and shading
+
+cpuplot.streamx <-  cpuplot.stream + xlim(0, 650)
+
+cpuplot.streamax <- cpuplot.streamx + annotate("text", x = 60, y = 90, label = "QC") +
+  annotate("rect", xmin = 44, xmax = 76, ymin = 0, ymax = 100,
+           fill = "magenta", alpha = .2) +
+  annotate("text", x = 260, y = 60, label = "diginorm") +
+  annotate("rect", xmin = 200, xmax = 320, ymin = 0, ymax = 100,
+           fill = "purple", alpha = .2) +
+  annotate("text", x =  550, y = 30, label = "assembly") +
+  annotate("rect", xmin = 320, xmax = 520, ymin = 0, ymax = 100,
+           fill = "orange", alpha = .2) + expand_limits(y = 0)
+
+cpuplot.nonstream <- ggplot(data=log.data.nonstream, aes_string(x="TIMEns", y="CPUns")) + 
+  geom_line(color = "blue") + xlab("Time (seconds)") + ylab("Nonstreaming") +
+  theme(axis.text.y = element_text(size = 16, color = "black", face = "bold"),
+        axis.text.x = element_text(size = 16, color = "black", 
+                                         face = "bold")) 
+
+cpuplot.nonstreamx <- cpuplot.nonstream + xlim(0, 650)
+
+cpuplot.nonstreamax <- cpuplot.nonstreamx + annotate("text", x = 60, y = 90, label = "QC") +
+  annotate("rect", xmin = 44, xmax = 76, ymin = 0, ymax = 100,
+           fill = "magenta", alpha = .2) +
+  annotate("text", x = 370, y = 60, label = "diginorm") +
+  annotate("rect", xmin = 260, xmax = 450, ymin = 0, ymax = 100,
+           fill = "purple", alpha = .2) +
+  annotate("text", x =  590, y = 30, label = "assembly") +
+  annotate("rect", xmin = 450, xmax = 640, ymin = 0, ymax = 100,
+           fill = "orange", alpha = .2) + expand_limits(y = 0)
+
+# grid.arrange to stack graphs, textGrob for common y axis label
+
+grid.arrange(cpuplot.streamax, cpuplot.nonstreamax,
+  left = textGrob("CPU (100%)", rot = 90, vjust = 1, 
+  gp = gpar(fontface = "bold")))
+
+
+## Comparing RAM streaming vs nonstreaming ##
+
+# Load both logs, name columns specifying streaming or non, correct RAM
+
+log.data.nonstream <- read.table("~/benchmarking/nonstreaming/log.out") 
+colnames(log.data.nonstream) <- c("TIMEns", "CPUns","RAMns","DISKns","5","6","7","8")
+log.data.nonstream$RAMns <- log.data.nonstream$RAMns/1e6
+
+log.data.stream <- read.table("~/benchmarking/streaming/raw-ouput/10-27-15/log.out") 
+colnames(log.data.stream) <- c("TIMEs", "CPUs","RAMs","DISKs","5","6","7","8")
+log.data.stream$RAMs <- log.data.stream$RAMs/1e6
+
+# Create plots, then have <plot>.x to force both plots to have same 
+# x axis and force y axis to start at 0
+
+ramplot.stream <- ggplot(data=log.data.stream, aes_string(x="TIMEs", y="RAMs")) + 
+  geom_line(color = "red") + xlab("") + ylab("Streaming RAM") +
+  ggtitle("Eel Pond (1-3) RAM Streaming vs Nonstreaming") + theme(axis.text.x = 
+  element_blank(), axis.text.y = element_text(size = 16, color = "black", 
+  face = "bold"), plot.title = element_text(face = "bold", size = 13.5))
+
+# Create new plot to fix axis, then another 
+# to annotate with text and shading
+
+ramplot.streamx <-  ramplot.stream + xlim(0, 650) + ylim(0, 13)
+
+ramplot.streamax <- ramplot.streamx + annotate("text", x = 50, y = 7, label = "QC") +
+  annotate("rect", xmin = 44, xmax = 76, ymin = 0, ymax = 13,
+           fill = "magenta", alpha = .2) +
+  annotate("text", x = 260, y = 60, label = "diginorm") +
+  annotate("rect", xmin = 200, xmax = 320, ymin = 0, ymax = 13,
+           fill = "purple", alpha = .2) +
+  annotate("text", x =  450, y = 30, label = "assembly") +
+  annotate("rect", xmin = 320, xmax = 520, ymin = 0, ymax = 13,
+           fill = "orange", alpha = .2) + expand_limits(y = 0)
+
+ramplot.nonstream <- ggplot(data=log.data.nonstream, aes_string(x="TIMEns", y="RAMns")) + 
+  geom_line(color = "red") + xlab("Time (seconds)") + ylab("Nonstreaming") +
+  theme(axis.text.y = element_text(size = 16, color = "black", face = "bold"),
+        axis.text.x = element_text(size = 16, color = "black", 
+        face = "bold")) 
+
+# Create new plot to fix axis, then another 
+# to annotate with text and shading
+
+ramplot.nonstreamx <- ramplot.nonstream + xlim(0, 650) + ylim(0, 13)
+
+ramplot.nonstreamax <- ramplot.nonstreamx + annotate("text", x = 60, y = 7, label = "QC") +
+  annotate("rect", xmin = 44, xmax = 76, ymin = 0, ymax = 13,
+           fill = "magenta", alpha = .2) +
+  annotate("text", x = 370, y = 7, label = "diginorm") +
+  annotate("rect", xmin = 260, xmax = 450, ymin = 0, ymax = 13,
+           fill = "purple", alpha = .2) +
+  annotate("text", x =  590, y = 7, label = "assembly") +
+  annotate("rect", xmin = 450, xmax = 640, ymin = 0, ymax = 13,
+           fill = "orange", alpha = .2) + expand_limits(y = 0)
+
+# grid.arrange to stack graphs, textGrob for common y axis label
+
+grid.arrange(ramplot.streamax, ramplot.nonstreamax,
+             left = textGrob("RAM (GB)", rot = 90, vjust = 1, 
+                             gp = gpar(fontface = "bold")))
+
+
+## Comparing DISK streaming vs nonstreaming ##
+
+# Load both logs, name columns specifying streaming or non, correct disk
+
+log.data.nonstream <- read.table("~/benchmarking/nonstreaming/log.out") 
+colnames(log.data.nonstream) <- c("TIMEns", "CPUns","RAMns","DISKns","5","6","7","8")
+log.data.nonstream$DISKns <- log.data.nonstream$DISKns/1e2
+
+log.data.stream <- read.table("~/benchmarking/streaming/raw-ouput/10-27-15/log.out") 
+colnames(log.data.stream) <- c("TIMEs", "CPUs","RAMs","DISKs","5","6","7","8")
+log.data.stream$DISKs <- log.data.stream$DISKs/1e2
+
+# Create plots, then have <plot>.x to force both plots to have same 
+# x axis and force y axis to start at 0
+
+diskplot.stream <- ggplot(data=log.data.stream, aes_string(x="TIMEs", y="DISKs")) + 
+  geom_line(color = "green") + xlab("") + ylab("Streaming") +
+  ggtitle("Eel Pond (1-3) Disk Streaming vs Nonstreaming") + theme(axis.text.x = 
+  element_blank(), axis.text.y = element_text(size = 16, color = "black", 
+  face = "bold"), plot.title = element_text(face = "bold", size = 13.5))
+
+diskplot.streamx <-  diskplot.stream + xlim(0, 650) + expand_limits(y = 0)
+
+diskplot.nonstream <- ggplot(data=log.data.nonstream, aes_string(x="TIMEns", y="DISKns")) + 
+  geom_line(color = "green") + xlab("Time (seconds)") + ylab("Nonstreaming") +
+  theme(axis.text.y = element_text(size = 16, color = "black", face = "bold"),
+        axis.text.x = element_text(size = 16, color = "black", 
+                                         face = "bold"))
+
+diskplot.nonstreamx <- diskplot.nonstream + xlim(0, 650) + expand_limits(y = 0)
+
+# grid.arrange to stack graphs, textGrob for common y axis label
+
+grid.arrange(diskplot.streamx, diskplot.nonstreamx,
+  left = textGrob("Disk (kTPS)", rot = 90, vjust = 1, 
+                  gp = gpar(fontface = "bold")))
+
+

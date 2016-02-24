@@ -26,11 +26,9 @@ library("gridExtra")
 
 # Load space-separated data, rename columns, view
 
-<<<<<<< HEAD:benchmarking-10-01-15/plots.R
 log.data <- read.table("~/benchmarking/nonstreaming/log.out") 
 colnames(log.data) <- c("TIME", "CPU","RAM","DISK","5","6","7","8")
 #head(log.data)
-=======
 # Load data
 ## Space-separated (no header assumed)
 log.data <- read.table("~/benchmarking/nonstreaming/raw-output/10-28-15/log.out") # with header

@@ -31,13 +31,14 @@ do
 done  
 ```
 
-In another ssh session, run sar to monitor resrouces. Use screen to do so in same window. 
-*Note* - ctrl = press control key plus key after.
-Start screen:
+In another ssh session, run [sar](https://github.com/ctb/sartre) to monitor resrouces. Use screen to do so in same window. 
+*Note* - ctrl+a = press control key and a at the same time, this won't copy paste.
+Use [screen](http://www.pixelbeat.org/lkdb/screen.html) to have multiple windows within same ssh session.
 
 ```text
 screen
-crtl+a n # creates new window
+
+crtl+a c # creates new window
 ```
 
 Install sar:

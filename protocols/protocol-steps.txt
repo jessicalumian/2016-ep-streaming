@@ -1,0 +1,54 @@
+This will be converted to markdown. Steps to generate streaming data:
+
+1. Fire up Amazon EC2 (m3.xlarge for data subset)
+2. Install git-core for literate resting text extraction
+of khmer-protocols. Commands:
+
+sudo chmod a+rwxt /mnt
+sudo apt-get -y install git-core
+
+3. Extract commands from protocols, note ctb branch is nonstreaming. Commands:
+
+# note - for nonstreaming, do -b ctb, for streaming, do -b jem-streaming
+cd /home/ubuntu
+rm -fr literate-resting khmer-protocols
+git clone https://github.com/dib-lab/literate-resting.git
+git clone https://github.com/dib-lab/khmer-protocols.git -b ctb
+
+cd khmer-protocols/mrnaseq
+
+4. Extract commands from protocals. Commands:
+
+## vim 1-quality.rst # change version number on line 49 to match the release to test
+
+for i in [1-3]-*.rst
+do
+   /home/ubuntu/literate-resting/scan.py $i || break
+done
+
+5. In another ssh session, run sar to monitor resrouces. Use screen to do so in same window. Screen commands:
+
+screen
+crtl+a n # creates new window
+
+Sar commands:
+# Install
+
+sudo apt-get install sysstat -y
+
+# Run
+sar -u -r -d -o times.dat 1
+
+crtl+a crtl+a # go back to previous window
+
+6. Run commands for pages 1-3 (goes up through trinity assembly). Commands:
+
+# check to make sure this works
+for i in [1-3]-*.rst.sh
+do
+   bash $i
+done
+
+7. Use scp to transfer file to local computer (instead of cyberduck). Command for local computer:
+
+scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/mnt/work/trinity_out_dir/Trinity.fasta ~/2016-ep-streaming 

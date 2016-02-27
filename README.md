@@ -56,6 +56,7 @@ Go back to previous window:
 ```text
 crtl+a crtl+a
 ```
+**For nonstreaming**
 
 Run commands for pages 1-3 (goes up through trinity assembly). Commands:
 
@@ -65,6 +66,14 @@ do
    bash $i
 done
 ```
+
+**For streaming**
+
+```text
+bash 1-quality.rst.sh
+```
+
+This will generate your assembly in a file called Trinity.fasta!
 
 Use scp to transfer file to local computer (could also use cyberduck, but this is quicker). Fill in with correct paths and < > brackets. **Command for local computer**:
 

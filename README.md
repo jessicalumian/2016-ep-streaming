@@ -20,7 +20,7 @@ rm -fr literate-resting khmer-protocols
 git clone https://github.com/dib-lab/literate-resting.git
 git clone https://github.com/dib-lab/khmer-protocols.git -b ctb
 
-cd khmer-protocols/mrnaseq
+cd khmer-protocols/mrnaseq  
 ```
 Extract commands from protocols. 
 
@@ -28,7 +28,7 @@ Extract commands from protocols.
 for i in [1-3]-*.rst
 do
    /home/ubuntu/literate-resting/scan.py $i || break
-done
+done  
 ```
 
 In another ssh session, run sar to monitor resrouces. Use screen to do so in same window. 
@@ -43,13 +43,13 @@ crtl+a n # creates new window
 Install sar:
 
 ```text
-sudo apt-get install sysstat -y
+sudo apt-get install sysstat -y  
 ```
 
 Start running sar:
 
 ```text
-sar -u -r -d -o times.dat 1
+sar -u -r -d -o times.dat 1  
 ```
 
 Go back to previous window:
@@ -64,13 +64,13 @@ Run commands for pages 1-3 (goes up through trinity assembly). Commands:
 for i in [1-3]-*.rst.sh
 do
    bash $i
-done
+done  
 ```
 
 **For streaming**
 
 ```text
-bash 1-quality.rst.sh
+bash 1-quality.rst.sh  
 ```
 
 This will generate your assembly in a file called Trinity.fasta!
@@ -78,5 +78,5 @@ This will generate your assembly in a file called Trinity.fasta!
 Use scp to transfer file to local computer (could also use cyberduck, but this is quicker). Fill in with correct paths and < > brackets. **Command for local computer**:
 
 ```text
-scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/mnt/work/trinity_out_dir/Trinity.fasta ~/2016-ep-streaming 
+scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/mnt/work/trinity_out_dir/Trinity.fasta ~/2016-ep-streaming  
 ```

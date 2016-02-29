@@ -76,14 +76,14 @@ bash 1-quality.rst.sh
 
 This will generate your assembly in a file called Trinity.fasta!
 
-Use scp to transfer file to local computer (could also use cyberduck, but this is quicker). Fill in with correct paths and < > brackets. **Command for local computer**:
+Use scp to transfer file to local computer (could also use cyberduck, but this is quicker). Fill in with correct paths and < > brackets. **Command for local computer** when in your desired file location:
 
 ```text
-scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/mnt/work/trinity_out_dir/Trinity.fasta ~/2016-ep-streaming  
+scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/mnt/work/trinity_out_dir/Trinity.fasta .  
 ```
 
 And also copy the times.dat file to a local computer, running this same command **on the local computer**:
 
 ```text
-scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/home/ubuntu/khmer-protocols/mrnaseq/times.dat ~/2016-ep-streaming  
+scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/home/ubuntu/khmer-protocols/mrnaseq/times.dat .  
 ```

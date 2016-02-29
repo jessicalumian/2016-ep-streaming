@@ -97,3 +97,9 @@ And also copy the times.dat and disk, cpu, and ram files to a local computer, ru
 scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/home/ubuntu/khmer-protocols/mrnaseq/times.dat .
 scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/home/ubuntu/khmer-protocols/mrnaseq/*.txt.gz .  
 ```
+
+To do:
+
+* Make extract.py in satre repo work to extract the log.out file (maybe python 3 incompatibility?), remember added parens to last print statement in log.out
+* Put log.out into RStudio, generate graphs, add working script here
+* Connect to Jupyter Notebook and create notebook here with graphs of results

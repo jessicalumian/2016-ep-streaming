@@ -103,3 +103,4 @@ To do:
 * Make extract.py in satre repo work to extract the log.out file (maybe python 3 incompatibility?), remember added parens to last print statement in log.out
 * Put log.out into RStudio, generate graphs, add working script here
 * Connect to Jupyter Notebook and create notebook here with graphs of results
+* Automate into Makefile?

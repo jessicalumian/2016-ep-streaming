@@ -81,3 +81,9 @@ Use scp to transfer file to local computer (could also use cyberduck, but this i
 ```text
 scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/mnt/work/trinity_out_dir/Trinity.fasta ~/2016-ep-streaming  
 ```
+
+And also copy the times.dat file to a local computer, running this same command **on the local computer**:
+
+```text
+scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/home/ubuntu/khmer-protocols/mrnaseq/times.dat ~/2016-ep-streaming  
+```

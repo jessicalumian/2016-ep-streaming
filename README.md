@@ -76,14 +76,24 @@ bash 1-quality.rst.sh
 
 This will generate your assembly in a file called Trinity.fasta!
 
-Use scp to transfer file to local computer (could also use cyberduck, but this is quicker). Fill in with correct paths and < > brackets. **Command for local computer** when in your desired file location:
+Now, use the following commands to extract disk, CPU, and RAM information from sar:
+
+```text
+sar -d -p -f times.dat > disk.txt
+sar -u -f times.dat > cpu.txt
+sar -r -f times.dat > ram.txt
+gzip *.txt
+```
+
+Use scp to transfer files to local computer (could also use cyberduck, but this is quicker). Fill in with correct paths and < > brackets. **Command for local computer** when in your desired file location for the assembly:
 
 ```text
 scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/mnt/work/trinity_out_dir/Trinity.fasta .  
 ```
 
-And also copy the times.dat file to a local computer, running this same command **on the local computer**:
+And also copy the times.dat and disk, cpu, and ram files to a local computer, running this same command **on the local computer**:
 
 ```text
-scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/home/ubuntu/khmer-protocols/mrnaseq/times.dat .  
+scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/home/ubuntu/khmer-protocols/mrnaseq/times.dat .
+scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/home/ubuntu/khmer-protocols/mrnaseq/*.txt.gz .  
 ```

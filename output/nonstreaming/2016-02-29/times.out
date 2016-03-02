@@ -1,0 +1,11 @@
+1-quality INSTALL Mon Feb 29 22:42:00 UTC 2016
+1-quality TRIM Mon Feb 29 22:42:46 UTC 2016
+1-quality DONE Mon Feb 29 22:44:54 UTC 2016
+2-diginorm normalize1-pe Mon Feb 29 22:44:54 UTC 2016
+2-diginorm filter-abund Mon Feb 29 22:46:44 UTC 2016
+2-diginorm extract Mon Feb 29 22:47:16 UTC 2016
+2-diginorm DONE Mon Feb 29 22:47:24 UTC 2016
+3-big-assembly compileTrinity Mon Feb 29 22:47:24 UTC 2016
+3-big-assembly extractReads Mon Feb 29 22:49:29 UTC 2016
+3-big-assembly assemble Mon Feb 29 22:49:35 UTC 2016
+3-big-assembly DONE Mon Feb 29 22:52:33 UTC 2016

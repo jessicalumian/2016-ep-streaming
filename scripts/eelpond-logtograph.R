@@ -5,7 +5,7 @@
 # Load data, name column headers
 # Fill in path to file with desired path here
 
-log.data <- read.table("~/benchmarking/streaming/raw-ouput/10-27-15/log.out")
+log.data <- read.table("~/2016-ep-streaming/output/nonstreaming/2016-02-29/log.out")
 colnames(log.data) <- c("TIME", "CPU","RAM","DISK","5","6","7","8")
 
 # Divide RAM column by 1e6 to get from bytes to MB, DISK by 1e2
@@ -18,7 +18,7 @@ log.data$DISK <- log.data$DISK/1e2
 
 cpuplot <- ggplot(data=log.data, aes_string(x="TIME", y="CPU")) + 
   geom_line(color = "blue") + xlab("") + ylab("CPU load (100%)") +
-  ggtitle("Eel Pond (1-3) With Streaming 10-27-15 semistreaming khmer branch") + theme(axis.text.x = 
+  ggtitle("Eel Pond Through Assembly (1-3) With Nonstreaming Algorithm on Data Subset") + theme(axis.text.x = 
   element_blank(), axis.text.y = element_text(size = 16, color = "black", 
   face = "bold"), plot.title = element_text(face = "bold", size = 13.5))
 
@@ -65,5 +65,6 @@ diskplotay <- diskploty +
   annotate("rect", xmin = 330, xmax = 515, ymin = 0, ymax = 17,
            fill = "orange", alpha = .2) + expand_limits(y = 0)
 
-
-grid.arrange(cpuplotay,ramplotay,diskplotay)
+# for annotation: grid.arrange(cpuplotay,ramplotay,diskplotay)
+# also, change annotation to proper place
+grid.arrange(cpuplot,ramplot,diskplot)

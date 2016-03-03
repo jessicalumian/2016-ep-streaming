@@ -78,10 +78,16 @@ do
 done  
 ```
 
-**For streaming**
+**For streaming subset of data**
 
 ```text
 bash 1-quality.rst.sh  
+```
+
+**For streaming on full data set (mounted manually):**
+
+```text
+bash 2-diginorm.rst.sh
 ```
 
 This will generate your assembly in a file called Trinity.fasta!

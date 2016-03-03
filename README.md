@@ -100,7 +100,21 @@ scp -i ~/Downloads/amazon.pem ubuntu@<Public DNS>:/home/ubuntu/khmer-protocols/m
 
 To do:
 
-* Make extract.py in satre repo work to extract the log.out file (maybe python 3 incompatibility?), remember added parens to last print statement in log.out
-* Put log.out into RStudio, generate graphs, add working script here
-* Connect to Jupyter Notebook and create notebook here with graphs of results
-* Automate into Makefile?
+* Put log.out into RStudio, generate graphs, add working script here (probably done)
+* Connect to Jupyter Notebook and create notebook here with graphs of results (maybe don't need to do)
+* Automate into Makefile? (probably don't need to)
+* Run both ways (streaming and nonstreaming) 3 times using full dataset (on snapshot: snap-f5a9dea7) (miniworkflow: find snap, create volume from snap 25 gb, mount volume onto instance. Mount volume. Commands:
+
+```text
+lsblk # lists all possible volumes, identify which is right
+sudo bash
+mkdir data/ 
+mount /dev/xvXX data/ # fill in correct four characters. Note- this mount replaces entire directory, so do it in an empty place
+df
+ls
+```
+Then, link files into /mnt like in protocols, and get rid of file download (or just ignore subset files?)
+
+Done:
+
+* Make extract.py in satre repo work to extract the log.out file (maybe python 3 incompatibility?), remember added parens to last print statement in log.out (fixed by specifying python2.7)

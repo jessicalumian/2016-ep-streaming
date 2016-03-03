@@ -12,8 +12,8 @@ sudo apt-get -y install git-core
 ```
 
 Extract commands from protocols, note ctb branch is nonstreaming.
-*Note* - for nonstreaming, do -b ctb, for streaming, do -b jem-streaming
 
+**For non streaming:**
 ```text
 cd /home/ubuntu
 rm -fr literate-resting khmer-protocols
@@ -22,7 +22,17 @@ git clone https://github.com/dib-lab/khmer-protocols.git -b ctb
 
 cd khmer-protocols/mrnaseq  
 ```
-Extract commands from protocols. 
+
+**For streaming:**
+```text
+cd /home/ubuntu
+rm -fr literate-resting khmer-protocols
+git clone https://github.com/dib-lab/literate-resting.git
+git clone https://github.com/dib-lab/khmer-protocols.git -b jem-streaming
+
+cd khmer-protocols/mrnaseq  
+```
+(Back to both protocols.) Extract commands from protocols. 
 
 ```text
 for i in [1-3]-*.rst

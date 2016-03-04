@@ -122,6 +122,13 @@ To do:
 * Automate into Makefile? (probably don't need to)
 * Run both ways (streaming and nonstreaming) 3 times using full dataset (on snapshot: snap-f5a9dea7) (miniworkflow: find snap, create volume from snap 25 gb, mount volume onto instance. Mount volume. Commands:
 
+Start here for full dataset.
+
+Boot up an m4.4xlarge Amazon EC2. 
+
+Under "Add Storage", add 200 GB on the root volume.
+
+Mount data:
 ```text
 lsblk # lists all possible volumes, identify which is right
 sudo bash
@@ -130,7 +137,7 @@ mount /dev/xvXX data/ # fill in correct four characters. Note- this mount replac
 df
 ls
 ```
-Then, link files into /mnt like in protocols, and get rid of file download (or just ignore subset files?)
+Continuing on as root, start at the top of the protocols and continue on with the (non)streaming specific commands for whichever pipeline is being run.
 
 Done:
 

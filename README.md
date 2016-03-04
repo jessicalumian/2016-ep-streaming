@@ -81,7 +81,7 @@ done
 **For streaming subset of data**
 
 ```text
-bash 1-quality.rst.sh  
+bash 1-streaming-subset.rst.sh  
 ```
 
 **For streaming on full data set (mounted manually):**

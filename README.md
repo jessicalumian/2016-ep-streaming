@@ -63,8 +63,10 @@ In another ssh session, run [sar](https://github.com/ctb/sartre) to monitor resr
 *Note* - ctrl+a = press control key and a at the same time, this won't copy paste.
 Use [screen](http://www.pixelbeat.org/lkdb/screen.html) to have multiple windows within same ssh session.
 
+Now create a new window to run commands while sar runs in this one:
 ```text
 screen
+crtl+a c # creates a new window
 ```
 
 Install sar:
@@ -78,11 +80,12 @@ Start running sar:
 ```text
 sar -u -r -d -o times.dat 1  
 ```
+Create a new window and run commands:
 
-Now create a new window to run commands while sar runs in this one:
 ```text
-crtl+a c 
+crtl+a c
 ```
+
 **For nonstreaming, data subset**
 
 Run commands for pages 1-3 (goes up through trinity assembly):

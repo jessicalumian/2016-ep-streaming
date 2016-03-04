@@ -13,7 +13,7 @@ Mount data:
 lsblk # lists all possible volumes, identify which is right
 sudo bash
 mkdir data/ 
-mount /dev/xvXX data/ # fill in correct four characters. Note- this mount replaces entire directory, so do it in an empty place
+mount /dev/xvdf data/ # fill in correct four characters. Note- this mount replaces entire directory, so do it in an empty place
 df
 ls
 ```
@@ -94,7 +94,7 @@ do
 done  
 ```
 
-**For nonstreaming, full dataset:**
+**For nonstreaming, full dataset (mounted manually):**
 
 ```text
 for i in [3-6]-*.rst.sh

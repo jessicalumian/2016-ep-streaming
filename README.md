@@ -79,7 +79,7 @@ Start running sar:
 sar -u -r -d -o times.dat 1  
 ```
 
-Now create a new window:
+Now create a new window to run commands while sar runs in this one:
 ```text
 crtl+a c 
 ```

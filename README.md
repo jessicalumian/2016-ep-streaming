@@ -87,7 +87,7 @@ bash 1-streaming-subset.rst.sh
 **For streaming on full data set (mounted manually):**
 
 ```text
-bash 2-diginorm.rst.sh
+bash 2-streaming-full.rst.sh
 ```
 
 This will generate your assembly in a file called Trinity.fasta!

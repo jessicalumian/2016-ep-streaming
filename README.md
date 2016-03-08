@@ -153,3 +153,12 @@ To do:
 Done:
 
 * Make extract.py in satre repo work to extract the log.out file (maybe python 3 incompatibility?), remember added parens to last print statement in log.out (fixed by specifying python2.7)
+
+Screen Information - If ssh connection to AWS EC2 goes out, then use following commands to reattach:
+
+```text
+sudo bash
+screen -ls # see what screens you need
+screen -d # detach (if attached)
+screen -r # reattach (give choice of what to reattach to)
+```
